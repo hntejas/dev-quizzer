@@ -5,7 +5,6 @@ type QuizStatsProps = {
 };
 
 export default function QuizStats({ quizStats }: QuizStatsProps) {
-  console.log({ quizStats });
   return (
     <div className="quiz-stats">
       <h3>Score: {quizStats.totalPercent}%</h3>
