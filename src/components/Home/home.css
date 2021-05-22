@@ -1,0 +1,41 @@
+.quiz-card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.banner {
+  max-height: 40vh;
+  background: var(--dark-grey);
+  position: relative;
+}
+
+.banner-text {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  margin: auto;
+  color: var(--white);
+}
+
+.banner-text-heading {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.banner-text-para {
+  font-family: system-ui;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 600px) {
+  .quiz-card-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

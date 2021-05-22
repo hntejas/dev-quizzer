@@ -1,0 +1,158 @@
+.quiz-title {
+  color: var(--primary);
+  letter-spacing: 1.2px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0.5rem auto;
+}
+
+.question-container {
+  margin: auto;
+  padding: 1rem;
+  max-width: 600px;
+}
+
+.question-container ul {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.question-container li {
+  height: 3rem;
+  margin: 0.3rem auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.question-container .unchecked:hover {
+  background: var(--light-gray);
+}
+
+.question-container label {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.question-container label span {
+  max-width: calc(100% - 3rem);
+  text-align: left;
+}
+
+.question-container label:hover {
+  cursor: pointer;
+}
+
+.question-container input {
+  visibility: hidden;
+  width: 0;
+}
+
+.quiz-confirm-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: var(--white);
+  padding: 1rem;
+  background: var(--dark-grey);
+  min-height: 170px;
+  width: 350px;
+  max-width: calc(100vw - 4rem);
+  border-radius: 20px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--danger);
+}
+
+.quiz-confirm-form h4 {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.quiz-confirm-form {
+  font-size: 0.9rem;
+  font-family: system-ui;
+}
+
+.question-text {
+  font-size: 1.1rem;
+}
+
+.check {
+  max-width: 2rem;
+  width: 1rem;
+  height: 1rem;
+  border: 0.2rem solid var(--dark-grey);
+  margin-right: 1rem;
+  border-radius: 50%;
+}
+
+.checked {
+  background: var(--primary);
+  color: var(--white);
+  transition: background-color 0.3s linear;
+}
+
+.success-check {
+  background: var(--secondary);
+  color: var(--white);
+  padding: 0 1rem;
+}
+
+.success-check .check {
+  border-color: var(--white);
+}
+.failure-check .check {
+  border-color: var(--white);
+}
+
+.failure-check {
+  background: var(--danger);
+  color: var(--white);
+  padding: 0 1rem;
+}
+
+.checked .check {
+  border-color: var(--white);
+}
+
+.cta-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.question-explanation {
+  padding: 0.1rem 1rem;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.question-explanation p {
+  margin: 0.3rem 0;
+  text-align: center;
+}
+
+.question-explanation span {
+  font-size: 1.2rem;
+}
+
+.quiz-stats {
+  margin: 1rem 0 0 0;
+}
+
+.quiz-stats h3 {
+  display: block;
+  font-weight: 510;
+  font-size: 1.1rem;
+  font-family: system-ui, sans-serif;
+  margin: 0.5rem 0;
+}

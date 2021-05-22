@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --white: #ffffff;
+  --dark-grey: #24292e;
+  --light-gray: lightgray;
+  --background-white-light: #f0f4f7;
+  --primary: #865cda;
+  --secondary: #3cd458d9;
+  --danger: #ff4d4dc9;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lato", sans-serif;
+  letter-spacing: 0.1rem;
+  background: var(--background-white-light);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.App {
+  text-align: center;
+}
+
+.container {
+  padding: 1rem 0;
+  background: #f8f9fa;
+  margin: auto;
+}
+
+@media (min-width: 600px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 900px) {
+  .container {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 900px;
+  }
+}
+
+.btn {
+  background: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--primary);
+}
+
+.btn-primary {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  transition: all ease-in 0.3s;
+}
+
+.btn-primary:hover {
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  border-color: var(--secondary);
+  background: var(--secondary);
+  color: white;
+  transition: all ease-in 0.3s;
+}
+
+.btn-secondary:hover {
+  background: transparent;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  cursor: pointer;
+}
+
+.link-btn-fill {
+  display: inline-block;
+  width: max-content;
+  max-width: calc(100vw - 4rem);
+  margin: auto;
+  text-align: center;
+  text-decoration: none;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  flex: 0;
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin: 1rem auto;
+  width: 100%;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex-grow: 1;
+  border-top: 1px solid #979ba1;
+  margin: 0 0.5rem;
+}

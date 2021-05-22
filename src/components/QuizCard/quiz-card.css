@@ -1,0 +1,28 @@
+.quiz-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 160px;
+  background: var(--dark-grey);
+  margin: 1rem;
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 10px;
+}
+
+.quiz-card h3 {
+  font-weight: 600;
+  margin: 0.4rem;
+}
+
+.quiz-card h4 {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.quiz-icon {
+  max-width: 60px;
+  margin: 0.5rem;
+}
