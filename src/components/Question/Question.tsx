@@ -7,12 +7,14 @@ type QuestionProp = {
   submittedAnswer: number | undefined;
   quizDispatch: React.Dispatch<QuizAction>;
   currentQuestion: CurrentQuestion;
+  quizSubmitHandler: () => void;
 };
 
 export default function Question({
   submittedAnswer,
   quizDispatch,
   currentQuestion,
+  quizSubmitHandler,
 }: QuestionProp) {
   const updateAnswer = (questionId: number, optionId: number) => {
     quizDispatch({
@@ -78,6 +80,12 @@ export default function Question({
             onClick={() => changeQuestion("NEXT")}
           >
             Next
+          </button>
+        )}
+
+        {currentQuestion.isLastQuestion && (
+          <button className="btn btn-secondary" onClick={quizSubmitHandler}>
+            Submit
           </button>
         )}
       </div>

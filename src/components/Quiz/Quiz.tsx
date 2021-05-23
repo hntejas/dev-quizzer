@@ -58,6 +58,7 @@ export default function Quiz() {
             currentQuestion={currentQuestion}
             submittedAnswer={submittedAnswer}
             quizDispatch={quizDispatch}
+            quizSubmitHandler={() => setShowSubmitConfirmModal(true)}
           />
           <h3 className="divider">Finish Quiz</h3>
           <button
