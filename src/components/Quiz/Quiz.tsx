@@ -16,10 +16,11 @@ import "./quiz.css";
 export default function Quiz() {
   const [quiz, quizDispatch] = useReducer(quizReducer, initialQuizState);
   const [showSubmitConfirmModal, setShowSubmitConfirmModal] = useState(false);
-
   const { quizId } = useParams();
   const { getQuiz } = useQuizContext();
-  const currentQuiz: QuizType = getQuiz(parseInt(quizId));
+
+  const currentQuiz: QuizType | undefined =
+    getQuiz && getQuiz(parseInt(quizId));
   if (!currentQuiz) {
     return <h2>Quiz Not found</h2>;
   }

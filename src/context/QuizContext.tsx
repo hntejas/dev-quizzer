@@ -12,11 +12,11 @@ export const QuizContext = createContext<QuizContextType>({
 
 type QuizContextType = {
   quizdb?: Array<Quiz>;
-  getQuiz?: any;
+  getQuiz?: (quizId: number) => Quiz | undefined;
 };
 
 type QuizContextProviderProps = {
-  children?: any;
+  children?: React.ReactChild;
 };
 
 export default function QuizContextProvider({
