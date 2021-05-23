@@ -14,7 +14,7 @@ export default function Modal({ children, isOpen, closeModal }: ModalProps) {
   };
   return (
     <div
-      className={!!isOpen ? "modal open" : "modal"}
+      className={isOpen ? "modal open" : "modal"}
       onClick={modalClickHandler}
     >
       {children}
