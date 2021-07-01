@@ -1,9 +1,10 @@
 import Particles from "react-particles-js";
 
 import QuizCard from "../QuizCard/QuizCard";
-import { quizCatalog } from "../../data/data";
+import { useQuery, gql } from "@apollo/client";
 
 import "./home.css";
+import { QuizCatalog } from "../../data/data.types";
 
 const particleConfig = {
   fpsLimit: 60,
@@ -28,7 +29,22 @@ const particleConfig = {
   },
 };
 
+const QUIZ_CATALOG_QUERY = gql`
+  {
+    quizes {
+      quizId
+      quizName
+      quizCardIcon
+      totalQuestions
+    }
+  }
+`;
+
 export default function Home() {
+  const { loading, data } = useQuery(QUIZ_CATALOG_QUERY);
+
+  const quizCatalog: QuizCatalog | undefined = data?.quizes;
+
   return (
     <>
       <div className="banner">
@@ -41,9 +57,9 @@ export default function Home() {
         </div>
       </div>
       <div className=" quiz-card-container">
-        {quizCatalog.map((quiz) => (
-          <QuizCard key={quiz.quizId} quiz={quiz} />
-        ))}
+        {quizCatalog &&
+          quizCatalog.map((quiz) => <QuizCard key={quiz.quizId} quiz={quiz} />)}
+        {loading && <h3>Loading...</h3>}
       </div>
     </>
   );

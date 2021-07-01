@@ -31,6 +31,7 @@ export default function QuizAnswersReview({
                   option.optionId !== rightOption;
                 return (
                   <li
+                    key={option.optionId}
                     className={
                       isRightAnswer
                         ? "success-check"

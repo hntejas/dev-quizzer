@@ -20,7 +20,7 @@
 }
 
 .question-container li {
-  height: 3rem;
+  min-height: 3rem;
   margin: 0.3rem auto;
   padding: 0 1rem;
   display: flex;

@@ -4,23 +4,62 @@ import { Answers, Question } from "../../data/data.types";
 import { UserAnswers, QuizResultStats } from "../Quiz/quiz.types";
 import QuizAnswersReview from "./QuizAnswersReview";
 import { Link } from "react-router-dom";
+import { useQuery, gql, QueryResult } from "@apollo/client";
 
 type QuizResultProps = {
   questions: Array<Question>;
-  quizAnswers: Answers;
   userAnswers: UserAnswers;
+  quizId: Number;
 };
 
+const GET_QUIZ_ANSWERS = gql`
+  query ($quizId: Int!) {
+    quiz(quizId: $quizId) {
+      quizId
+      answers {
+        questionId
+        correctOptionId
+        explanation
+      }
+    }
+  }
+`;
+
+type RESPONSE = QueryResult<
+  {
+    quiz: {
+      answers: [
+        { questionId: number; correctOptionId: number; explanation: string }
+      ];
+    };
+  },
+  { quizId: Number }
+>;
 export default function QuizResult({
   questions,
-  quizAnswers,
   userAnswers,
+  quizId,
 }: QuizResultProps) {
-  let quizStats: QuizResultStats = getQuizStats(
-    questions,
-    quizAnswers,
-    userAnswers
-  );
+  const { data, loading }: RESPONSE = useQuery(GET_QUIZ_ANSWERS, {
+    variables: {
+      quizId: quizId,
+    },
+  });
+  let answers = {} as Answers;
+
+  if (loading) {
+    return <h3>Loading...</h3>;
+  }
+
+  data?.quiz?.answers.forEach((answer) => {
+    answers[answer.questionId] = {
+      correctOptionId: answer.correctOptionId,
+      explanation: answer.explanation,
+    };
+  });
+
+  let quizStats: QuizResultStats =
+    !loading && getQuizStats(questions, answers, userAnswers);
 
   return (
     <>
@@ -28,7 +67,7 @@ export default function QuizResult({
       <br />
       <QuizAnswersReview
         questions={questions}
-        quizAnswers={quizAnswers}
+        quizAnswers={answers}
         userAnswers={userAnswers}
       />
       <br />

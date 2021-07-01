@@ -6,27 +6,52 @@ import QuizResult from "../QuizResult/QuizResult";
 import Modal from "../Modal/Modal";
 
 import { quizReducer, initialQuizState } from "./quiz.reducer";
-import { useQuizContext } from "../../context/QuizContext";
 
 import { Quiz as QuizType } from "../../data/data.types";
 import { CurrentQuestion } from "./quiz.types";
 
 import "./quiz.css";
+import { useQuery, gql } from "@apollo/client";
+
+const GET_QUIZ = gql`
+  query ($quizId: Int!) {
+    quiz(quizId: $quizId) {
+      quizId
+      quizName
+      questions {
+        questionId
+        question
+        options {
+          optionId
+          optionText
+        }
+      }
+    }
+  }
+`;
 
 export default function Quiz() {
   const [quiz, quizDispatch] = useReducer(quizReducer, initialQuizState);
   const [showSubmitConfirmModal, setShowSubmitConfirmModal] = useState(false);
   const { quizId } = useParams();
-  const { getQuiz } = useQuizContext();
+  const { loading, data } = useQuery(GET_QUIZ, {
+    variables: {
+      quizId: parseInt(quizId),
+    },
+  });
+  const currentQuiz: QuizType | undefined = { ...data?.quiz };
 
-  const currentQuiz: QuizType | undefined =
-    getQuiz && getQuiz(parseInt(quizId));
+  if (loading) {
+    return <h2>Loading Quiz</h2>;
+  }
   if (!currentQuiz) {
     return <h2>Quiz Not found</h2>;
   }
 
-  const { quizName, questions, answers } = currentQuiz;
-  const currentQuestion: CurrentQuestion = questions[quiz.currentQuestionIndex];
+  const { quizName, questions } = currentQuiz;
+  const currentQuestion: CurrentQuestion = questions && {
+    ...questions[quiz.currentQuestionIndex],
+  };
   currentQuestion.isFirstQuestion = quiz.currentQuestionIndex === 0;
   currentQuestion.isLastQuestion =
     quiz.currentQuestionIndex === questions.length - 1;
@@ -70,8 +95,8 @@ export default function Quiz() {
         </>
       ) : (
         <QuizResult
+          quizId={parseInt(quizId)}
           questions={questions}
-          quizAnswers={answers}
           userAnswers={quiz.userAnswers}
         />
       )}
