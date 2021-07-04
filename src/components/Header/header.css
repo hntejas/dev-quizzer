@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  background: var(--dark-grey);
+  color: var(--white);
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 500;
+  letter-spacing: 0.2rem;
+  font-size: x-large;
+  cursor: default;
+}
+
+.header a {
+  margin-left: 1rem;
+  text-decoration: none;
+  display: block;
+  color: var(--white);
+}
